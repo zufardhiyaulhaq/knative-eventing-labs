@@ -31,7 +31,7 @@ func NewSettings() Settings {
 		log.Fatalln(err)
 	}
 
-	settings.CloudEventType = "dev.zufardhiyaulhaq.eventing.image-processing.bw"
+	settings.CloudEventType = "dev.zufardhiyaulhaq.eventing.image-processing.grayscale"
 	settings.CloudEventDataSchema = "https://minio.zufardhiyaulhaq.com/publics/schema/minio-data-processing-schema.json"
 	settings.CloudEventSource = buildEventSource(settings.ServiceNamespace, settings.ServiceName)
 	return settings
