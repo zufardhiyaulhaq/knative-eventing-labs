@@ -1,0 +1,5 @@
+Dockerfile
+.env
+.env.example
+*.yaml
+*.yml

@@ -1,0 +1,29 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: image-grayscale
+  namespace: serverless
+  labels:
+    networking.knative.dev/visibility: cluster-local
+spec:
+  template:
+    spec:
+      containerConcurrency: 3
+      containers:
+        - image: zufardhiyaulhaq/image-grayscale
+          env:
+          - name: SERVICE_NAME
+            value: image-grayscale
+          - name: SERVICE_NAMESPACE
+            value: serverless
+          envFrom:
+          - secretRef:
+              name: image-grayscale-secret
+          resources:
+            requests:
+              memory: "512Mi"
+              cpu: "250m"
+            limits:
+              memory: "2048Mi"
+              cpu: "500m"
+

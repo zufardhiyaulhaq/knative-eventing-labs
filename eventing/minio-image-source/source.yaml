@@ -1,0 +1,24 @@
+apiVersion: sources.knative.dev/v1
+kind: ContainerSource
+metadata:
+  name: minio-image-source
+  namespace: serverless
+spec:
+  template:
+    spec:
+      containers:
+        - image: zufardhiyaulhaq/minio-image-source
+          name: minio-image-source
+          envFrom:
+          - secretRef:
+              name: minio-image-source-secret
+          env:
+          - name: SERVICE_NAME
+            value: minio-image-source
+          - name: SERVICE_NAMESPACE
+            value: serverless
+  sink:
+    ref:
+      apiVersion: eventing.knative.dev/v1
+      kind: Broker
+      name: default

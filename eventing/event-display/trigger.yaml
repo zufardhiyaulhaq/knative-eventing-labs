@@ -1,0 +1,47 @@
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: minio-image-source-event-display-trigger
+  namespace: serverless
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: dev.zufardhiyaulhaq.eventing.image-processing.minio.bucket.image.create
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: event-display
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: resize-event-display-trigger
+  namespace: serverless
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: dev.zufardhiyaulhaq.eventing.image-processing.resize
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: event-display
+---
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: grayscale-event-display-trigger
+  namespace: serverless
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: dev.zufardhiyaulhaq.eventing.image-processing.grayscale
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: event-display

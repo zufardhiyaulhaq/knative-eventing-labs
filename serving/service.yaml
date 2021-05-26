@@ -1,0 +1,10 @@
+apiVersion: serving.knative.dev/v1
+kind: Service
+metadata:
+  name: echo
+  namespace: serverless
+spec:
+  template:
+    spec:
+      containers:
+        - image: zufardhiyaulhaq/echo

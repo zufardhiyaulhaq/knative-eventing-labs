@@ -1,0 +1,15 @@
+apiVersion: eventing.knative.dev/v1
+kind: Trigger
+metadata:
+  name: image-grayscale-trigger
+  namespace: serverless
+spec:
+  broker: default
+  filter:
+    attributes:
+      type: dev.zufardhiyaulhaq.eventing.image-processing.resize
+  subscriber:
+    ref:
+      apiVersion: serving.knative.dev/v1
+      kind: Service
+      name: image-grayscale
